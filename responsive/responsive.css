@@ -1,0 +1,26 @@
+
+@media screen and (min-width:1200px) {
+.k8em0{width:600px;height:600px;
+background:url(k8em0.jpg) 0 0px;}
+}
+
+@media screen and (min-width:900px)
+              and (max-width:1200px) {
+.k8em0{width:600px;height:600px;
+background:url(k8em0.jpg)-600px 0px;}
+}
+
+@media screen and (min-width:600px)
+              and (max-width:900px) {
+.k8em0{width:600px;height:600px;
+background:url(k8em0.jpg)0 -600px;}
+}
+
+@media screen and (max-width:600px) {
+.k8em0{width:600px;height:600px;
+background:url(k8em0.jpg)-600px -600px;}
+}
+
+/*900 pixels but less than or equal to 1200 pixels, display the top-right image
+If the browser screen width is greater than 600 pixels but less than or equal to 900 pixels, display the bottom-left image
+If the browser screen width is less than or equal to 600 pixels, display the last image, bottom-right.*/
