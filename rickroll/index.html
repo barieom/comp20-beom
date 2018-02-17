@@ -4,14 +4,15 @@
 <meta charset="utf-8" />
 <title>Rick Roll</title>
 <link rel="stylesheet" href="style.css" type="text/css" />
+<link href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah" rel="stylesheet">
 </head>
 
 <body>
 
-<h1 id="title">Rick Roll</h1>
+<h1 class = "center" id="title">Rick Roll</h1>
 
-<video src="https://www.cs.tufts.edu/comp/20/rickroll.mp4" id="rickroll" controls></video>
-<div id="lyrics"></div>
+<video src="https://www.cs.tufts.edu/comp/20/rickroll.mp4" id="rickroll" controls class="center"></video>
+<div id="lyrics" class="textbox center"></div>
 
 <script>
 	var rr_vid = document.getElementById("rickroll"); //rr_vid.currentTime to get curr
@@ -27,64 +28,86 @@
 			lyrics.innerHTML = "<h2>A full commitment's what I'm thinking of</h2>";
 		} else if (rr_vid.currentTime > 31.2 && rr_vid.currentTime < 35) {
 			lyrics.innerHTML = "<h2>You wouldn't get this from any other guy</h2>";
-		} else if (rr_vid.currentTime > 35.2 && rr_vid.currentTime < 36.2) {
+		} else if ((rr_vid.currentTime > 35.2 && rr_vid.currentTime < 36.2) ||
+				   (rr_vid.currentTime > 153.3 && rr_vid.currentTime < 154.2)){
 			lyrics.innerHTML = "<h2>IIIIIII</h2>";
-		} else if (rr_vid.currentTime > 36.2 && rr_vid.currentTime < 39.5) {
+		} else if ((rr_vid.currentTime > 36.2 && rr_vid.currentTime < 39.5)||
+			      (rr_vid.currentTime > 154.3 && rr_vid.currentTime < 157.8)) {
 			lyrics.innerHTML = "<h2>just wanna tell you how I'm feeling</h2>";
-		} else if (rr_vid.currentTime > 39.9 && rr_vid.currentTime < 42) {
+		} else if ((rr_vid.currentTime > 39.9 && rr_vid.currentTime < 42)|| 
+			       (rr_vid.currentTime > 157.9 && rr_vid.currentTime < 160.8)) {
 			lyrics.innerHTML = "<h2>Gotta make you understand</h2>";
-		} else if ((rr_vid.currentTime > 43 && rr_vid.currentTime < 44.8) ||
-				   (rr_vid.currentTime > 85 && rr_vid.currentTime < 87.8) ||
-				   (rr_vid.currentTime > 102.5 && rr_vid.currentTime < 104)) {
+		} else if ((rr_vid.currentTime > 43 && rr_vid.currentTime < 44.8)    ||
+				   (rr_vid.currentTime > 85 && rr_vid.currentTime < 87.8)    ||
+				   (rr_vid.currentTime > 102 && rr_vid.currentTime < 103.2)  ||
+				   (rr_vid.currentTime > 160.5 && rr_vid.currentTime < 162.9)||
+				   (rr_vid.currentTime > 177.7 && rr_vid.currentTime < 180.1)||
+				   (rr_vid.currentTime > 194.9 && rr_vid.currentTime < 197.3)) {
 			lyrics.innerHTML = "<h2>Never gonna give you up</h2>";
-		} else if ((rr_vid.currentTime > 45 && rr_vid.currentTime < 46.8) ||
-			       (rr_vid.currentTime > 88 && rr_vid.currentTime < 89.4) ||
-			       (rr_vid.currentTime > 104 && rr_vid.currentTime < 105.6)) {
+		} else if ((rr_vid.currentTime > 45 && rr_vid.currentTime < 46.8)    ||
+			       (rr_vid.currentTime > 88 && rr_vid.currentTime < 89.4)    ||
+			       (rr_vid.currentTime > 103.3 && rr_vid.currentTime < 105.6)||
+			       (rr_vid.currentTime > 163 && rr_vid.currentTime < 165.7)  ||
+			       (rr_vid.currentTime > 180.2 && rr_vid.currentTime < 182)  ||
+			       (rr_vid.currentTime > 197.5 && rr_vid.currentTime < 199.3)) {
 			lyrics.innerHTML = "<h2>Never gonna let you down</h2>";
-		} else if ((rr_vid.currentTime > 47 && rr_vid.currentTime < 51.2) ||
-			       (rr_vid.currentTime > 89.9 && rr_vid.currentTime < 94.2) ||
-			       (rr_vid.currentTime > 105.9 && rr_vid.currentTime < 110.2)) {
+		} else if ((rr_vid.currentTime > 47 && rr_vid.currentTime < 51.2)    ||
+			       (rr_vid.currentTime > 89.9 && rr_vid.currentTime < 94.2)  ||
+			       (rr_vid.currentTime > 105.9 && rr_vid.currentTime < 110.2)||
+			       (rr_vid.currentTime > 165.9 && rr_vid.currentTime < 169.3)||
+			       (rr_vid.currentTime > 182.1 && rr_vid.currentTime < 186.2)||
+			       (rr_vid.currentTime > 199.5 && rr_vid.currentTime < 203.7)) {
 			lyrics.innerHTML = "<h2>Never gonna run around and desert you</h2>";
-		} else if ((rr_vid.currentTime > 51.6 && rr_vid.currentTime < 53) ||
-			       (rr_vid.currentTime > 94.3 && rr_vid.currentTime < 95.7) ||
-				   (rr_vid.currentTime > 110.3 && rr_vid.currentTime < 111.7)) {
+		} else if ((rr_vid.currentTime > 51.6 && rr_vid.currentTime < 53)    ||
+			       (rr_vid.currentTime > 94.3 && rr_vid.currentTime < 95.7)  ||
+				   (rr_vid.currentTime > 110.3 && rr_vid.currentTime < 111.7)||
+				   (rr_vid.currentTime > 169.4 && rr_vid.currentTime < 170.9)||
+				   (rr_vid.currentTime > 186.3 && rr_vid.currentTime < 187.7)||
+				   (rr_vid.currentTime > 203.8 && rr_vid.currentTime < 205.2)) {
 			lyrics.innerHTML = "<h2>Never gonna make you cry</h2>";
-		} else if ((rr_vid.currentTime > 53.2 && rr_vid.currentTime < 55.2) ||
-			       (rr_vid.currentTime > 95.9 && rr_vid.currentTime < 97.7) ||
-			       (rr_vid.currentTime > 111.8 && rr_vid.currentTime < 113.8)) {
+		} else if ((rr_vid.currentTime > 53.2 && rr_vid.currentTime < 55.2)  ||
+			       (rr_vid.currentTime > 95.9 && rr_vid.currentTime < 97.7)  ||
+			       (rr_vid.currentTime > 111.8 && rr_vid.currentTime < 113.8)||
+			       (rr_vid.currentTime > 171 && rr_vid.currentTime < 173)    ||
+			       (rr_vid.currentTime > 187.8 && rr_vid.currentTime < 189.7)||
+			       (rr_vid.currentTime > 205.3 && rr_vid.currentTime < 207.3)) {
 			lyrics.innerHTML = "<h2>Never gonna say goodbye</h2>";
 		} else if ((rr_vid.currentTime > 55.6 && rr_vid.currentTime < 60.4) ||
 			       (rr_vid.currentTime > 97.8 && rr_vid.currentTime < 101.8) ||
-			       (rr_vid.currentTime > 114.1 && rr_vid.currentTime < 118.6)) {
+			       (rr_vid.currentTime > 114.1 && rr_vid.currentTime < 118.6) ||
+			       (rr_vid.currentTime > 173.1 && rr_vid.currentTime < 177.3) ||
+			       (rr_vid.currentTime > 189.9 && rr_vid.currentTime < 194)   ||
+			       (rr_vid.currentTime > 207.4 && rr_vid.currentTime < 211)) {
 			lyrics.innerHTML = "<h2>Never gonna tell a lie and hurt you</h2>";
 		} 
 
-		else if ((rr_vid.currentTime > 60.9 && rr_vid.currentTime < 64.5)) {
+		else if ((rr_vid.currentTime > 59.5 && rr_vid.currentTime < 64.5) ||
+			     (rr_vid.currentTime > 136.6 && rr_vid.currentTime < 140.2)) {
 			lyrics.innerHTML = "<h2>We've known each other for so long</h2>";
-		} else if ((rr_vid.currentTime > 64.6 && rr_vid.currentTime < 66.3)) {
+		} else if ((rr_vid.currentTime > 64.6 && rr_vid.currentTime < 66.3) ||
+				   (rr_vid.currentTime > 140.8 && rr_vid.currentTime < 142.1)) {
 			lyrics.innerHTML = "<h2>Your heart's been aching, but...</h2>";
-		} else if ((rr_vid.currentTime > 66.6 && rr_vid.currentTime < 69.3)) {
+		} else if ((rr_vid.currentTime > 66.6 && rr_vid.currentTime < 68.7) ||
+				   (rr_vid.currentTime > 142.8 && rr_vid.currentTime < 145.5)) {
 			lyrics.innerHTML = "<h2>You're too shy to say it</h2>";
-		} else if ((rr_vid.currentTime > 69.6 && rr_vid.currentTime < 73.4)) {
+		} else if ((rr_vid.currentTime > 68.9 && rr_vid.currentTime < 73) ||
+			       (rr_vid.currentTime > 145.2 && rr_vid.currentTime < 149.6)) {
 			lyrics.innerHTML = "<h2>Inside, we both know what's been going on</h2>";
-		} else if ((rr_vid.currentTime > 73.6 && rr_vid.currentTime < 77.0)) {
+		} else if ((rr_vid.currentTime > 73 && rr_vid.currentTime < 77.0) ||
+			       (rr_vid.currentTime > 149.8 && rr_vid.currentTime < 153.2)) {
 			lyrics.innerHTML = "<h2>We know the game and we're gonna play it</h2>";
-		} else if ((rr_vid.currentTime > 77.1 && rr_vid.currentTime < 81.6)) {
+		} else if ((rr_vid.currentTime > 77.1 && rr_vid.currentTime < 81.6) ) {
 			lyrics.innerHTML = "<h2>And if you ask me how I'm feeling</h2>";
-		} else if ((rr_vid.currentTime > 81.7 && rr_vid.currentTime < 84.6)) {
+		} else if ((rr_vid.currentTime > 81.7 && rr_vid.currentTime < 84.6) ) {
 			lyrics.innerHTML = "<h2>Don't tell me you're too blind to see</h2>";
 		} 
 
-		else if ((rr_vid.currentTime > 60.9 && rr_vid.currentTime < 64.5)) {
+		else if ((rr_vid.currentTime > 119.5 && rr_vid.currentTime < 123.4) || 
+			     (rr_vid.currentTime > 123.9 && rr_vid.currentTime < 127.5)) {
 			lyrics.innerHTML = "<h2>(Ooh, give you up)</h2>";
-		} else if ((rr_vid.currentTime > 64.6 && rr_vid.currentTime < 66.3)) {
-			lyrics.innerHTML = "<h2>Never gonna give, never gonna give</h2>";
-		} else if ((rr_vid.currentTime > 66.6 && rr_vid.currentTime < 69.3)) {
-			lyrics.innerHTML = "<h2>(Give you up)</h2>";
-		} else if ((rr_vid.currentTime > 69.6 && rr_vid.currentTime < 73.4)) {
-			lyrics.innerHTML = "<h2>Inside, we both know what's been going on</h2>";
-		} else if ((rr_vid.currentTime > 73.6 && rr_vid.currentTime < 77.0)) {
-			lyrics.innerHTML = "<h2>We know the game and we're gonna play it</h2>";
+		} else if ((rr_vid.currentTime > 128 && rr_vid.currentTime < 131) ||
+			       (rr_vid.currentTime > 131.1 && rr_vid.currentTime < 135)) {
+			lyrics.innerHTML = "<h2>Never gonna give, never gonna give... (Give you up)</h2>";
 		} 
 
 		else {
@@ -97,21 +120,6 @@
 
 <!-- 
 
-We've known each other for so long
-Your heart's been aching, but
-You're too shy to say it
-Inside, we both know what's been going on
-We know the game and we're gonna play it
-
-I just wanna tell you how I'm feeling
-Gotta make you understand
-
-Never gonna give you up
-Never gonna let you down
-Never gonna run around and desert you
-Never gonna make you cry
-Never gonna say goodbye
-Never gonna tell a lie and hurt you
 
 Never gonna give you up
 Never gonna let you down
