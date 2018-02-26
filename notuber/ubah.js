@@ -1,9 +1,9 @@
 var myLat = 0;
 var myLng = 0;
-var me = new google.maps.LatLng(myLat, myLng);
+// var me = new google.maps.LatLng(myLat, myLng);
 var map;
 var marker;
-var infowindow = new google.maps.InfoWindow();
+// var infowindow = new google.maps.InfoWindow();
 
 function initMap() {
   "use strict";
@@ -27,16 +27,16 @@ function initMap() {
     //   position: new google.maps.LatLng(0, 0),
     //   type: "self"
     // };
-    getMyLocation();
+    getMyLocation(map);
 }
 
-function getMyLocation() {
-	console.log("hey")
+function getMyLocation(map) {
 	if (navigator.geolocation) { // the navigator.geolocation object is supported on your browser
 		navigator.geolocation.getCurrentPosition(function(position) {
 			myLat = position.coords.latitude;
 			myLng = position.coords.longitude;
-			renderMap();
+			console.log(myLat);
+			renderMap(map);
 		});
 	}
 	else {
@@ -44,7 +44,7 @@ function getMyLocation() {
 	}
 }
 
-function renderMap() {
+function renderMap(map) {
 	me = new google.maps.LatLng(myLat, myLng);
 
 	// Update map and go there...
