@@ -1,0 +1,25 @@
+html, body {
+  height: 100%;
+  margin: 4;
+  font-family: "Montserrat";
+}
+
+#header {
+  height: 64px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  
+}
+
+#header, h1 {
+  text-align: center;
+  background-color: #4169E1;
+  margin: 0 auto;
+  color: #FFF;
+}
+
+
+#map {
+  height: calc(100% - 80px - 40px);
+}
