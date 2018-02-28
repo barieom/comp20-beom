@@ -6,30 +6,40 @@ var marker;
 var map;
 // var infowindow = new google.maps.InfoWindow();
 function setAllMarkers(self, data, icons, map) {
+	var infowindow = new google.maps.InfoWindow(), i;
 	function setMarker(data, type, icons, map) {
 		marker = new google.maps.Marker({
 			position: new google.maps.LatLng(data.lat, data.lng),
 			icon: icons[type],
 			title: "Here I Am!",
-			setmap: map
+			map: map
 		});
-		
+
+		var ctx = "";
+		if (type == 'self') {
+			ctx = data.username;
+			console.log(data.username + " is my username");
+			infowindow.setContent(ctx);
+      		infowindow.open(map, marker);
+		} else {
+			ctx = data.username;
+			console.log(data.username + " is their username");			
+		}
+
+		marker.addListener('click', function() { infowindow.setContent(ctx); infowindow.open(map, marker); });
 	}
 
 	setMarker(self, self.type, icons, map);
-	marker.setMap(map);
+	//marker.setMap(map);
 
 	if (ride_data.vehicles){
 		for (i = 0; i < ride_data.vehicles.length; i++){
-			setMarker(ride_data.vehicles[i], "vehicle", icons, map);
+			setMarker(ride_data.vehicles[i], 'vehicle', icons, map);
 		}
 	}
 
-
-	google.maps.event.addListener(marker, 'click', function() {
-		infowindow.setContent(marker.title);
-		infowindow.open(map, marker);
-	});
+	map.setCenter(self.position);
+ 	map.setZoom(15);
 }
 
 
@@ -64,46 +74,31 @@ function initMap() {
     }),
     self = {
       username: 'HTRHha9MYl',
+      position: new google.maps.LatLng(0, 0),
+      type: "self",
       lat: 0,
       lng: 0,
-      position: new google.maps.LatLng(0, 0),
-      type: "self"
     },
     icons = {
       passenger: {
         url: "passenger.png",
-        scaledSize: new google.maps.Size(30, 50),
-        origin: new google.maps.Point(0, 0),
         anchor: new google.maps.Point(15, 50)
+        scaledSize: new google.maps.Size(25, 30),
+        origin: new google.maps.Point(0, 0),
       },
       vehicle: {
-        url: "car.png",
-        scaledSize: new google.maps.Size(50, 20),
-        origin: new google.maps.Point(0, 0),
+        url: "car.png",        
         anchor: new google.maps.Point(25, 20)
+        scaledSize: new google.maps.Size(25, 30),
+        origin: new google.maps.Point(0, 0),
       },
       self: {
-        url: "me.png",
+        url: "me.png",         
+        anchor: new google.maps.Point(25, 20)
         scaledSize: new google.maps.Size(50, 40),
         origin: new google.maps.Point(0, 0),
-        anchor: new google.maps.Point(25, 20)
       }
     };
-    // icons = {
-    //   passenger: {},
-    //   vehicle: {
-    //   	url: "car.png",
-    //   	lat: 0,
-    //   	lng: 0,
-    //   	position: new google.maps.LatLng(0, 0),
-    //   },
-    //   self: {
-    //   	url: "me.png",
-    //   	lat: 0,
-    //   	lng: 0,
-    //   	position: new google.maps.LatLng(0, 0),
-    //   }
-    // };
     getMyLocation(map, self, icons);
 }
 
@@ -122,20 +117,5 @@ function getMyLocation(map, self, icons) {
 }
 
 function renderMap(map, self, icons) {
-	// Update map and go there...
-	map.panTo(self);
-	
-	// Create a marker
-	// marker = new google.maps.Marker({
-	// 	position: self,
-	// 	icon: icons["self"],
-	// 	title: "Here I Am!",
-	// 	map: map
-	// });
-//	setMarker(self, self.type, icons);
-	// marker.setMap(map);
-		
-	// Open info window on click of marker
-
 	requestData(self, icons, map);
 }
