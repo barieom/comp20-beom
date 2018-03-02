@@ -51,7 +51,7 @@ function setMarker(self, data, type, icons, map) {
 				min_dist = dist;
 			}
 		} else {
-			ctx = data.username + "\n[Closest: " + min_dist + " miles]";		
+			ctx = data.username + "\n[Closest dist: " + min_dist + " miles]";		
 		}
 
 		marker.addListener('click', function() { 
