@@ -1,6 +1,6 @@
-#README ASSIGNMENT 2 - "Not Uber"
-###Barry Eom (beom01)
-###3/2/2018
+#README ASSIGNMENT 2 - "Not Uber"#
+###Barry Eom (beom01)###
+###3/2/2018###
 
 
 1. Everything has been correctly implemented
