@@ -93,7 +93,7 @@ function initMap() {
 }
 
 function getMyLocation(map, self, icons) {
-	if (navigator.geolocation) { // the navigator.geolocation object is supported on your browser
+	if (navigator.geolocation) { 
 		navigator.geolocation.getCurrentPosition(function(position) {
 			self.lat = position.coords.latitude;
 			self.lng = position.coords.longitude;
@@ -102,7 +102,7 @@ function getMyLocation(map, self, icons) {
 		});
 	}
 	else {
-		alert("Geolocation is not supported by your web browser.  What a shame!");
+		alert("Boohoo! Geolocation is not supported by your web browser");
 	}
 }
 
