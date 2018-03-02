@@ -46,14 +46,14 @@ function setMarker(self, data, type, icons, map) {
 		var ctx = "";
 		if (type != 'self') {
 			dist = getDist(new google.maps.LatLng(self.lat, self.lng), new google.maps.LatLng(data.lat, data.lng));
-			ctx  = data.username + "\n[Dist: " + dist + " miles]";
+			ctx  = "Username: " + data.username + "<br>" + "Dist: " + dist + " miles";
 			if (dist < min_dist) {
 				min_dist = dist;
 			}
 		} else {
-			ctx = data.username + "\n[Closest dist: " + min_dist + " miles]";		
+			ctx = "Username: " + data.username + "<br>" + "Closest car: " + min_dist + " miles";
+			document.getElementById("uber_message").innerHTML = "The closest car to you is " + min_dist + " miles away";
 		}
-
 		marker.addListener('click', function() { 
 			infowindow.setContent(ctx); 
 			infowindow.open(map, this); 
