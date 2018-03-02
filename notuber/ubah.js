@@ -1,13 +1,40 @@
-var myLat = 0;
-var myLng = 0;
-// var me = new google.maps.LatLng(myLat, myLng);
+function requestData(self, icons, map) {
+	request = new XMLHttpRequest();
+	request.open("POST", "https://jordan-marsh.herokuapp.com/rides", true);
+	request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
-var marker;
-var map;
-// var infowindow = new google.maps.InfoWindow();
+	request.onreadystatechange = function() {
+		if (request.readyState == 4 && request.status == 200) {
+			ride_data = JSON.parse(request.responseText);
+			setAllMarkers(self, ride_data, icons, map);
+		} else if (request.readyState === 4 && request.status !== 200) {
+      		alert("XML request error");
+    	}
+	}
+
+	request.send("username=" + self.username + "&lat=" + self.lat + "&lng=" + self.lng);
+}
+
+min_dist = Number.MAX_SAFE_INTEGER;
 function setAllMarkers(self, data, icons, map) {
-	var infowindow = new google.maps.InfoWindow(), i;
-	function setMarker(data, type, icons, map) {
+	infowindow = new google.maps.InfoWindow();
+	if (ride_data.vehicles){
+		for (i = 0; i < ride_data.vehicles.length; i++){
+			setMarker(self, ride_data.vehicles[i], 'vehicle', icons, map);
+		}
+	} else if (ride_data.passengers) {
+		for (i = 0; i < ride_data.passengers.length; i++) {
+			setMarker(self, ride_data.passengers[i], 'passenger', icons, map);
+		}
+	}
+
+	setMarker(self, self, self.type, icons, map);
+
+	map.setCenter(self.position);
+ 	map.setZoom(15);
+}
+
+function setMarker(self, data, type, icons, map) {
 		marker = new google.maps.Marker({
 			position: new google.maps.LatLng(data.lat, data.lng),
 			icon: icons[type],
@@ -15,58 +42,27 @@ function setAllMarkers(self, data, icons, map) {
 			map: map
 		});
 
+		var dist = 0;
 		var ctx = "";
-		if (type == 'self') {
-			ctx = data.username;
-			console.log(data.username + " is my username");
-			infowindow.setContent(ctx);
-      		infowindow.open(map, marker);
+		if (type != 'self') {
+			dist = getDist(new google.maps.LatLng(self.lat, self.lng), new google.maps.LatLng(data.lat, data.lng));
+			ctx  = data.username + "\n[Dist: " + dist + " miles]";
+			if (dist < min_dist) {
+				min_dist = dist;
+			}
 		} else {
-			ctx = data.username;
-			console.log(data.username + " is their username");			
+			ctx = data.username + "\n[Closest: " + min_dist + " miles]";		
 		}
 
-		marker.addListener('click', function() { infowindow.setContent(ctx); infowindow.open(map, marker); });
+		marker.addListener('click', function() { 
+			infowindow.setContent(ctx); 
+			infowindow.open(map, this); 
+		});
 	}
-
-	setMarker(self, self.type, icons, map);
-	//marker.setMap(map);
-
-	if (ride_data.vehicles){
-		for (i = 0; i < ride_data.vehicles.length; i++){
-			setMarker(ride_data.vehicles[i], 'vehicle', icons, map);
-		}
-	}
-
-	map.setCenter(self.position);
- 	map.setZoom(15);
-}
-
-
-
-function requestData(self, icons, map) {
-	request = new XMLHttpRequest();
-	request.open("POST", "https://jordan-marsh.herokuapp.com/rides", true);
-	request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-	request.onreadystatechange = function() {
-		if (request.readyState == 4 && request.status == 200) {
-			msg = document.getElementById("json_data");
-			ride_data = JSON.parse(request.responseText);
-			msg.innerHTML = ride_data.vehicles;
-			setAllMarkers(self, ride_data, icons, map);
-		} else if (request.readyState === 4 && request.status !== 200) {
-      		alert("Error: XML request went wrong.");
-    	}
-	}
-
-	request.send("username=" + self.username + "&lat=" + self.lat + "&lng=" + self.lng);
-}
-
 
 
 
 function initMap() {
-  "use strict";
   var mass = new google.maps.LatLng(42.4072, -71.3824),
   map = new google.maps.Map(document.getElementById('map'), {
       center: mass,
@@ -80,23 +76,17 @@ function initMap() {
       lng: 0,
     },
     icons = {
-      passenger: {
-        url: "passenger.png",
-        anchor: new google.maps.Point(15, 50)
-        scaledSize: new google.maps.Size(25, 30),
-        origin: new google.maps.Point(0, 0),
-      },
+      // passenger: {
+      //   url: "passenger.png",
+      //   scaledSize: new google.maps.Size(15, 30),
+      // },
       vehicle: {
         url: "car.png",        
-        anchor: new google.maps.Point(25, 20)
-        scaledSize: new google.maps.Size(25, 30),
-        origin: new google.maps.Point(0, 0),
+        scaledSize: new google.maps.Size(15, 30),
       },
       self: {
-        url: "me.png",         
-        anchor: new google.maps.Point(25, 20)
-        scaledSize: new google.maps.Size(50, 40),
-        origin: new google.maps.Point(0, 0),
+        url: "me.png",
+        scaledSize: new google.maps.Size(50, 50),
       }
     };
     getMyLocation(map, self, icons);
@@ -118,4 +108,9 @@ function getMyLocation(map, self, icons) {
 
 function renderMap(map, self, icons) {
 	requestData(self, icons, map);
+}
+
+
+function getDist(latLng1, latLng2) {
+	return (0.000621371192 * google.maps.geometry.spherical.computeDistanceBetween(latLng1, latLng2)).toFixed(2);
 }
