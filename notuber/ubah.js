@@ -43,16 +43,17 @@ function setMarker(self, data, type, icons, map) {
 		});
 
 		var dist = 0;
-		var ctx = "";
+		var ctx  = "";
 		if (type != 'self') {
 			dist = getDist(new google.maps.LatLng(self.lat, self.lng), new google.maps.LatLng(data.lat, data.lng));
 			ctx  = "Username: " + data.username + "<br>" + "Dist: " + dist + " miles";
 			if (dist < min_dist) {
 				min_dist = dist;
 			}
+			_type = type;
 		} else {
-			ctx = "Username: " + data.username + "<br>" + "Closest car: " + min_dist + " miles";
-			document.getElementById("uber_message").innerHTML = "The closest car to you is " + min_dist + " miles away";
+			ctx = "Username: " + data.username + "<br>" + "Closest " + _type + ": " + min_dist + " miles";
+			document.getElementById("uber_message").innerHTML = "The closest "+ _type + " to you is " + min_dist + " miles away";
 		}
 		marker.addListener('click', function() { 
 			infowindow.setContent(ctx); 
@@ -76,10 +77,10 @@ function initMap() {
       lng: 0,
     },
     icons = {
-      // passenger: {
-      //   url: "passenger.png",
-      //   scaledSize: new google.maps.Size(15, 30),
-      // },
+      passenger: {
+        url: "passenger.png",
+        scaledSize: new google.maps.Size(25, 25),
+      },
       vehicle: {
         url: "car.png",        
         scaledSize: new google.maps.Size(15, 30),
@@ -98,7 +99,8 @@ function getMyLocation(map, self, icons) {
 			self.lat = position.coords.latitude;
 			self.lng = position.coords.longitude;
 			self.position = new google.maps.LatLng(self.lat, self.lng);
-			renderMap(map, self, icons);
+			requestData(self, icons, map);
+			// renderMap(map, self, icons);
 		});
 	}
 	else {

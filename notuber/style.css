@@ -4,30 +4,24 @@ html, body {
   font-family: "Montserrat";
   background-color: #4169E1;
 }
-
 #header {
   height: 64px;
-  justify-content: center;
   align-items: center;
   display: flex;
   
 }
-
 #header, h1 {
   text-align: center;
   background-color: #4169E1;
   margin: 0 auto;
   color: #FFF;
 }
-
-
 #map {
-  height: calc(100% - 80px - 40px);
+  height: calc(100% - 50px - 30px);
   margin: 4px;
-  background-color: #4169E1;
 }
-
 #uber_message {
+  text-align: center;
   font-size: 32;
   color: #FFF;
 }
