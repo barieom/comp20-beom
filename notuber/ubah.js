@@ -34,6 +34,7 @@ function setAllMarkers(self, data, icons, map) {
  	map.setZoom(15);
 }
 
+_type = "";
 function setMarker(self, data, type, icons, map) {
 		marker = new google.maps.Marker({
 			position: new google.maps.LatLng(data.lat, data.lng),
