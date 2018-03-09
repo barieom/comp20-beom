@@ -5,10 +5,37 @@
 <head>
     <meta charset="utf-8" />
     <title>Captain's Log</title>
-    <link rel="stylesheet" href="style.css" />
+    <!-- <link rel="stylesheet" href="style.css" /> -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script>
-        // Your work will be done here...
+        $(document).ready(function() {
+            var i;
+            reverse();
+
+            i = localStorage.length;
+            $(":input").keypress(function(e) {
+                
+                if (e.which == 13) {
+                    var value = $( this ).val();
+                    date = new Date().getTime();
+                    console.log(i + " " + date + " " + value)
+                    localStorage.setItem(i, date + " " + value);
+                    console.log(localStorage.getItem(i));
+                    $("#log").prepend($("<p>").html(localStorage.getItem(i)))
+                    i++;
+                }
+            });
+        });
+
+        function reverse() { 
+            if (localStorage.length > 0) {
+                for (j = localStorage.length - 1; j > -1; j--) {
+                    $("#log").append($("<p>").html(localStorage.getItem(j)));
+                }
+            }
+        }
+
+
     </script>
 </head>
 
