@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8" />
     <title>Captain's Log</title>
-    <!-- <link rel="stylesheet" href="style.css" /> -->
+    <link rel="stylesheet" href="style.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script>
         $(document).ready(function() {
@@ -17,13 +17,12 @@
                 
                 if (e.which == 13) {
                     var value = $( this ).val();
-                    date = new Date().getTime();
-                    console.log(i + " " + date + " " + value)
-                    localStorage.setItem(i, date + " " + value);
-                    console.log(localStorage.getItem(i));
+                    date = (new Date(new Date().getTime())).toLocaleString();
+                    localStorage.setItem(i, date + " - " + value);
                     $("#log").prepend($("<p>").html(localStorage.getItem(i)))
                     i++;
                 }
+                $(this).val() = "";
             });
         });
 
