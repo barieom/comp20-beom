@@ -21,6 +21,7 @@
                     localStorage.setItem(i, date + " - " + value);
                     $("#log").prepend($("<p>").html(localStorage.getItem(i)))
                     i++;
+                    $("#msg").val("");
                 }
                 $(this).val() = "";
             });
