@@ -11,10 +11,8 @@
         $(document).ready(function() {
             var i;
             reverse();
-
             i = localStorage.length;
             $(":input").keypress(function(e) {
-                
                 if (e.which == 13) {
                     var value = $( this ).val();
                     date = (new Date(new Date().getTime())).toLocaleString();

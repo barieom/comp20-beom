@@ -17,7 +17,6 @@
 <script>
 	var rr_vid = document.getElementById("rickroll"); //rr_vid.currentTime to get curr
 	var lyrics = document.getElementById("lyrics"); 
-	console.log(rr_vid);
 	rr_vid.play();
 	rr_vid.addEventListener("timeupdate", function() {
 		if (rr_vid.currentTime > 18 && rr_vid.currentTime < 22) {

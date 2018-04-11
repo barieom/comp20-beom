@@ -1,6 +1,6 @@
 function requestData(self, icons, map) {
 	request = new XMLHttpRequest();
-	request.open("POST", "https://jordan-marsh.herokuapp.com/rides", true);
+	request.open("POST", "https://vast-reef-20785.herokuapp.com/rides", true);
 	request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
 	request.onreadystatechange = function() {
