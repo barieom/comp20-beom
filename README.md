@@ -1,18 +1,18 @@
-#Finalizing Your Learning Portfolio
+# Finalizing Your Learning Portfolio
 ===================================
-##Comp20 2018 Spring | Barry Eom: 4/14/2018
+## Comp20 2018 Spring | Barry Eom: 4/14/2018
 ---
 1. What is this purpose of this Git repository? (duh!)
 
-... The purpose of this Git repository is to represent the aggregation of all the work done throughout the semester.
+⋅⋅⋅ The purpose of this Git repository is to represent the aggregation of all the work done throughout the semester.
 
 ---
 2. What was your favorite lab or assignment and why?
 
-... My favorite assignment was assignment 2. At the end of the assignment, being able to see the visualization and the 
-... translation of the JSON data onto the Google Maps API was a satisfying moment. I have always wanted to work with 
-... data and visualizing data so to have a visual representation of the cars and the passengers was stunning. 
-..
+⋅⋅⋅ My favorite assignment was assignment 2. At the end of the assignment, being able to see the visualization and the 
+⋅⋅⋅ translation of the JSON data onto the Google Maps API was a satisfying moment. I have always wanted to work with 
+⋅⋅⋅ data and visualizing data so to have a visual representation of the cars and the passengers was stunning. 
+
 
 ---
 3. How much do you think you have grown from day 1 of this course to now?
@@ -45,4 +45,3 @@
 ... visualization tools and incorporate them to my personal website.
 ... More pertaining to this course, I am intrigued by web security and
 ... and planning to take the course sometime during my college career.
-
