@@ -4,7 +4,7 @@
 ---
 1. What is this purpose of this Git repository? (duh!)
 
-    The purpose of this Git repository is to represent the aggregation of all the work done throughout the semester.
+    The purpose of this Git repository is to represent the aggregation of all the work done throughout the semester for the web programming course.
 
 ---
 2. What was your favorite lab or assignment and why?
@@ -29,19 +29,18 @@
     The most important and compelling material I learned in this class is, 
     without a doubt, introduction to web security. It was shocking to 
     learn that an alarming percentage of websites and applications 
-    are vulenrable to attacks. Even knowing the bare minimum on the importance
-    of web security was a learning experience. Additionally, learning
-    about sending and receiving data via JSON is useful. As mentioned
+    are vulenrable to attacks. Even learning about the bare minimum on the fundamentals
+    of web security was an enlightening experience. Additionally, learning
+    about sending and receiving data via JSON is, as I personally found it, extremely useful. As mentioned
     previously, I am interested in working with data and learning to 
-    manipulate and move that around online through application of JSON
-    in assignment 2 and 3 was extremely valuable to me.
+    manipulate, and to move that around online through application of JSON
+    in assignment 2 and 3 was fascinating.
 
 ---
 5. Now that you have finished the course, what topic would you like to delve deeper into?
 
     I would like to learn more about data visualization and analytics.
     I frequent r/dataisbeautiful and websites heavy on statistics like 
-    fiveseventyfour, and would like to work on some interesting data 
-    visualization tools and incorporate them to my personal website.
-    More pertaining to this course, I am intrigued by web security and
-    and planning to take the course sometime during my college career.
+    fiveseventyfour, and would like to work on data analytics project, utilizing data 
+    visualization tools and incorporating them to my personal website.
+    More pertaining to this course, I am intrigued by web security and plan to take the course sometime during my college career.

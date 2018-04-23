@@ -1,4 +1,4 @@
-##BARRY EOM | ASSIGNMENT 4: Security and Privacy
+#BARRY EOM | ASSIGNMENT 4: Security and Privacy
 ===
 
 1. Every aspect of the assignment has been correctly implemented.
