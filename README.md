@@ -1,5 +1,5 @@
 # Finalizing Your Learning Portfolio
-===
+
 ## Comp20 2018 Spring | Barry Eom: 4/14/2018
 ---
 1. What is this purpose of this Git repository? (duh!)

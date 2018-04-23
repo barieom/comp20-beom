@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>A4 - Security</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"> 
+	<style type="text/css">
+		.size{width:400px;height:400px;}.sizeL{width:500px;}
+		.indent{margin-left:5%;}
+		.textbox{width:80%; margin-left:2%;}
+	</style>
+</head>
+<body>
+
+	<h1> Comp-20 Assignment 4 Security | Barry Eom </h1>
+	<h3>Introduction</h3>
+		<p class="textbox">Throughout the course of Web Programming this semester via the assignment, the students individually built a website and a server side that mimics the functionality of Ube and Lyft. However, there was no consideration of security while building the website and the server. As such, we investigate how vulnerable our codes are without any security measures. </p>
+	<h3>Methodology</h3>
+		<p class="textbox">I used the terminal. I started by POSTing data in several methods based on the links on Comp-20 course schedule. Based on Ming's example in class, I experimented with Cross-Site Scripting via curl. I tried HTML injection afterwards, but they technically similar. I then explored more common types of cyber-attack, which led me to the discovery of Denial of Service Attack. Afterwards, I tinkered around and tested various inputs for the POST parameters--namely username, latitude, and longitude--to see if they haven been processed and handled correctly. 
+	<h3>Abstract Findings</h3>
+		<p class="textbox">There exist crucial security vulnerabilities for this web application. First, hackers are able to sneak their code into the program to manipulate the code in our web application and redirect to their malicious websites. Second, private information regarding the driver's can be accessed by complete strangers just by using a web browser. Additionally, hackers can insert unlimited amount of junk data to the database to temporarily crash our web application.</p>
+	<h3>Issues Found</h3>
+	<div class="indent">
+		<h4>Issue 1: Cross Site Scripting</h4>
+			<ul>
+			<li>Location: Posting on https://glacial-wave-55792.herokuapp.com/rides</li>
+			<li>Severity of Issue: Severe</li>
+				<p class="textbox">This is severe because injection of HTML and javscript code is possible. For one major possibility, anyone trying to access the website can be redirected to another website.</p>
+			<li>Desription of Issue</li>
+				<p class="textbox">When submitting a POST request via curl on the terminal, one can inject Javascript source code, such as alert(), or, though a little different, HTML injection by injecting HTML images as the username parameter.
+				</p>
+			<li>Vulnerability Proof: <br><img src="images/issue1a.png" class="sizeL"/>
+									 <br><img src="images/issue1.png" class="size"/></li>
+			<li>Resolution</li>
+				<p class="textbox">Add a line of code that screens out unncessary characters. More specifically, removing characters such as / [ ^ > < etc will fix this issue. For example:</p>
+				<div id="code"><xmp>html = html.replace(/</g, “&lt;”).replace(/>/g, “&gt;”);</xmp></div>
+			</ul>
+		<h4>Issue 2: Query String and MongoDB Injections</h4>
+			<ul>
+			<li>Location: Accessing vehicle information on https://glacial-wave-55792.herokuapp.com/vehicle.json?username=...</li>
+			<li>Severity of Issue: Severe</li>
+				<p class="textbox">This issue is ranked severe because private information regarding vehicles, such as exact location, can be accessed to those without the knowledge of certain keys. If one knew of a driver JANET, inputting </p>
+					<div id="code">
+					<xmp>.../path/vehicle.json?username[$ne]=JANET</xmp>
+					</div>
+				<p class="textbox"> would have yielded other drivers that JANET had no access to. User information is not protected and should be protected for those without knowledge about the users. </p>
+
+			<li>Desription of Issue</li>
+				<p class="textbox">When accessing JSON data through the extension path /vehicle.json, when specifying the query with <div><xmp>[$ne], [$gt], [$lt]</xmp></div> which all can be used to access and return data that the hacker does not have access to. </p>
+			<li>Vulnerability Proof: <br> <img src="images/issue2.png" class="sizeL"/></li>
+			<li>Resolution</li>
+				<p class="textbox">Add a line of code that screens out </p> <div><xmp>[$ne], [$gt], [$lt]</xmp></div> <p class="textbox">query operators. This can be done similarly to that of what was done for XSS. </p>
+			</ul>
+		<h4>Issue 3: Overloading and DoS Attack</h4>
+			<ul>
+			<li>Location: Posting unlimited data on https://glacial-wave-55792.herokuapp.com/rides</li>
+			<li>Severity of Issue: Medium</li>
+				<p class="textbox">This issue is ranked medium because the perpetrator can make our web application unavailable by temporarily crashing and disrupting service by overloading our server with overwhelming requests. This prevents legitimate requests by actual users from being fulfilled. Of course, if our users cannot use the application, we will lose valuable users. However, there is no privacy breach. </p>
+			<li>Desription of Issue</li>
+				<p class="textbox">When curling and POSTing data to the Mongo database, the server keeps accepting POST data. Perpetrator can continuously and endlessly push data to our service and ultimately crash our website.</p>
+			<li>Proof of Vulnerability</li>
+				<img src="images/issue3_Rate.png" class="sizeL"/>
+			<li>Resolution</li>
+				<p class="textbox">This can be fixed by implementing rate limiting, controlling the rate of traffic received by our end. This can be done so by implementing session management and using rate limiting algorithm to verify user session to limit the extent of requests. In the event of too many requests, we can send status code 429--too many requests. </p>
+			</ul>
+	</div>
+	<h3>Conclusion</h3>
+		<p class="textbox">
+			This web-application is vulnerable to any kind of attack. Thus, for future consideration, never trust the user, more specifically the user input. Implement screenings for all parameters to ensure that no junk data nor malicious scripts is being added to the server for hijacking or service crashing purposes. Most importantly, however, implement a layer of security to prevent any private information from being accessible by a third party. 
+		</p>
+	<h3>References</h3>
+		<p class="textbox">
+		https://www.owasp.org/index.php/Cross-site_Scripting_(XSS) <br>
+		http://blog.securelayer7.net/mongodb-security-injection-attacks-with-php/ <br>
+		https://en.wikipedia.org/wiki/Denial-of-service_attack<br>
+		https://en.wikipedia.org/wiki/Rate_limiting<br>
+		</p>
+</body>
+</html>
